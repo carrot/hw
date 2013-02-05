@@ -1,4 +1,4 @@
-module CB
+module HW
   module Actions
     def header msg
       say_status ">>>", "\e[36m#{msg}\e[0m", :cyan

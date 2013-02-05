@@ -1,3 +1,3 @@
-module CB
+module HW
   VERSION = "0.3.0"
 end

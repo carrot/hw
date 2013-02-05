@@ -5,6 +5,6 @@ require 'httparty'
 require 'active_support/all' #/concerns
 require 'rails/generators/actions'
 
-require 'cb/core_ext/string'
-require 'cb/actions'
-require 'cb/utilities'
+require 'hw/core_ext/string'
+require 'hw/actions'
+require 'hw/utilities'

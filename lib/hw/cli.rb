@@ -1,14 +1,14 @@
-require 'cb/base'
+require 'hw/base'
 
-module CB
+module HW
   class Thor < ::Thor
     include Thor::Actions
     include Rails::Generators::Actions
-    include CB::Utilities
-    include CB::Actions
+    include HW::Utilities
+    include HW::Actions
   end
 
-  class CLI < CB::Thor
+  class CLI < HW::Thor
     def self.start(given_args = ARGV, config = {})
       packages = Hash.new
 
@@ -30,22 +30,28 @@ module CB
 
         if name != 'settings'
           if %w(system help).include?(name)
-            require 'cb/packages/system'
-            register(CB::Packages::System, "system", "system <command>", "Perform system commands")
+            require 'hw/packages/system'
+            register(HW::Packages::System, "system", "system <command>", "Perform system commands")
           else
             SOURCES.keys.each do |directory|
               full_path       = File.join(SOURCES_PATH, directory, "#{name}.rb")
               packages[name]  = full_path if File.exists?(full_path)
             end
 
-            require packages[name]
+            begin
+              require packages[name]
+            rescue TypeError
+              puts "Package '#{name}' does not exist in any of the sources."
+              exit(1)
+            end
+
             pkg_name = name.to_pkg
 
             if RESERVED_WORDS.include?(pkg_name.downcase)
               raise "#{pkg_name} is a reserved word and cannot be defined as a package"
             end
 
-            klass = CB::Packages::const_get(pkg_name)
+            klass = HW::Packages::const_get(pkg_name)
             register(klass, name, "#{name} <command>", "")
           end
         end
@@ -57,10 +63,10 @@ module CB
     desc "settings", "Display cb settings information"
     def settings
       hidden    = %w(ClassMethods)
-      constants = CB::Utilities.constants.reject { |c| hidden.include?(c) }
+      constants = HW::Utilities.constants.reject { |c| hidden.include?(c) }
       rows      = Array.new
 
-      constants.each { |constant| rows << [constant, CB::Utilities::const_get(constant)] }
+      constants.each { |constant| rows << [constant, HW::Utilities::const_get(constant)] }
 
       Thor::Shell::Basic.new.print_table(rows)
     end

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/cb/version', __FILE__)
+require File.expand_path('../lib/hw/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Tom Milewski"]
@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "cb"
+  gem.name          = "hw"
   gem.require_paths = ["lib"]
   gem.version       = CB::VERSION
 

@@ -1,9 +1,9 @@
-module CB
+module HW
   module Packages
-    class System < CB::Thor
+    class System < HW::Thor
       desc "update", "Update installed packages"
       def update
-        header "Updating cb"
+        header "Updating hw"
 
         # Setup File Structure
         empty_directory DIRECTORY     unless File.exists? DIRECTORY
