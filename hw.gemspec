@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "debugger"
   gem.add_development_dependency "ronn"
   gem.add_development_dependency "rspec", "~> 2.11"
+  gem.add_development_dependency "pry"
 
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

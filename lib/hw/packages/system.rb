@@ -16,19 +16,26 @@ module HW
           invoke :add_source, ["default", DEFAULT_SOURCE]
         end
 
-        SOURCES.each do |name, url|
+        # Iterate through sources and take appropriate actions. TODO: Refactor.
+        Thor.sources.each do |name, url|
           begin
-            repo_path = "#{SOURCES_PATH}/#{name}"
+            path  = "#{SOURCES_PATH}/#{name}"
+            local = Thor.local?(url)
 
-            if File.exists?(repo_path)
-              git = Git.open(repo_path)
-              git.pull
-            else
-              Git.clone(url, name, :path => SOURCES_PATH)
+            unless local
+              if File.exists?(path)
+                Git.open(path).pull
+              else
+                Git.clone(url, name, :path => SOURCES_PATH) unless local
+              end
             end
-            success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
+
+            if local and !File.exists?(url)
+              error "Local directory '#{url}' not found. Please check your sources at #{CONFIG_PATH}"
+            else
+              success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
+            end
           rescue Git::GitExecuteError => e
-            error e.inspect
             warn "Nothing was pulled from #{url}"
           end
         end

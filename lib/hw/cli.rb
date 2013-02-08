@@ -1,3 +1,4 @@
+require 'pry'
 require 'hw/base'
 
 module HW
@@ -13,7 +14,7 @@ module HW
       packages = Hash.new
 
       if ARGV.empty?
-        SOURCES.keys.each do |directory|
+        sources.keys.each do |directory|
           full_path = File.join(SOURCES_PATH, directory, "*.rb")
 
           Dir[full_path].each do |file|
@@ -33,7 +34,7 @@ module HW
             require 'hw/packages/system'
             register(HW::Packages::System, "system", "system <command>", "Perform system commands")
           else
-            SOURCES.keys.each do |directory|
+            sources.keys.each do |directory|
               full_path       = File.join(SOURCES_PATH, directory, "#{name}.rb")
               packages[name]  = full_path if File.exists?(full_path)
             end
