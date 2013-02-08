@@ -21,12 +21,14 @@ module HW
             repo_path = "#{SOURCES_PATH}/#{name}"
 
             if File.exists?(repo_path)
-              Git.open(repo_path).pull
+              git = Git.open(repo_path)
+              git.pull
             else
               Git.clone(url, name, :path => SOURCES_PATH)
             end
             success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
-          rescue Git::GitExecuteError
+          rescue Git::GitExecuteError => e
+            error e.inspect
             warn "Nothing was pulled from #{url}"
           end
         end
