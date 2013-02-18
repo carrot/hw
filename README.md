@@ -1,6 +1,10 @@
-# HW
+[![Gem Version](https://badge.fury.io/rb/hw.png)](https://rubygems.org/gems/hw)
+[![Build Status](https://secure.travis-ci.org/carrot/hw.png?branch=master)](http://travis-ci.org/carrot/hw)
+[![Code Climate](https://codeclimate.com/github/carrot/hw.png)](https://codeclimate.com/github/carrot/hw)
 
-TODO: Write a gem description
+# HW (Hemingway)
+
+Package manager for miscellaneous tasks.
 
 ## Installation
 
@@ -18,27 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-    $ hw active_admin install
-    $ hw active_admin resource <model name>
-    $ hw airbrake install
-    $ hw devise install # TODO
-    $ hw devise strategy <facebook | twitter | instagram | github> # TODO
-    $ hw git commit # TODO
-    $ hw git gitignore
-    $ hw git init
-    $ hw git remote # TODO
-    $ hw haml convert
-    $ hw haml install
-    $ hw memcache install
-    $ hw memcache session_store
-    $ hw memcache start
-    $ hw new_relic install <license key>
-    $ hw rails new <project name>
-    $ hw redis install
-    $ hw resque install
-    $ hw resque scheduler
-    $ hw resque worker <name>
-    $ hw unicorn install
+    $ hw system update
 
 ## Contributing
 
