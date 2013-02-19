@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "ronn"
   gem.add_development_dependency "rspec", "~> 2.11"
   gem.add_development_dependency "pry"
+  gem.add_development_dependency "sqlite3"
 
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -29,6 +30,4 @@ Gem::Specification.new do |gem|
   gem.name          = "hw"
   gem.require_paths = ["lib"]
   gem.version       = HW::VERSION
-
-  gem.add_development_dependency "sqlite3"
 end
