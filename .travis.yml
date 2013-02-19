@@ -1,0 +1,22 @@
+language: ruby
+script: "bundle exec rake spec SPEC_OPTS='--format documentation'"
+rvm:
+  - 1.8.7
+  - 1.9.1
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
+  - ruby-head
+branches:
+  only:
+    - master
+notifications:
+  email: false
+  campfire:
+    on_success: change
+    on_failure: always
+    rooms:
+      - secure: "AICTLi0MONccrRhoL8OjRugKDGvf5nWk1exKxKRPkYEN9LNLnk+2rUXxJpgr\n40k7D3zycQJyO9f5NXBeM8H9/2snBR6mKQLobjK1oVMxePzvA0uSKg2DbO80\njAfHsiSPPEO4/bLJBtw6h/LgTLt0wLdJVizLd213fm60m4Iw9wo="
+    template:
+      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Build details: %{build_url}"
