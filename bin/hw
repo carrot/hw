@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 $:.unshift(File.expand_path('../../lib', __FILE__))
-require 'hw/cli'
+require 'hw'
 HW::CLI.start
