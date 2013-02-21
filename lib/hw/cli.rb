@@ -22,15 +22,29 @@ module HW
 
     desc "add_source <name> <source>", "Add a source to ~/.cbrc"
     def add_source name, source
-      HW::Sources.add
-
       header "Appending #{name} to #{CONFIG_PATH}"
       append_file CONFIG_PATH, "#{name}=#{source}\n"
     end
 
     desc "version", "display gem version information"
     def version
-      # TODO: display version information and if up to date
+      dependency = Gem::Dependency.new('hw', Gem::Requirement::default)
+      versions = Gem::SpecFetcher::fetcher.find_matching(dependency, true, false, false).collect do |entry|
+        if tuple = entry.first
+          tuple[1]
+        end
+      end
+
+      latest = versions.last.to_s
+
+      if latest != VERSION
+        error "Your version is out of date."
+        info  "Your Version: #{VERSION}"
+        info  "Current Version: #{latest}"
+      else
+        success "Your version is up to date."
+        info  "Your Version: #{VERSION}"
+      end
     end
 
     desc "update", "Update installed packages"
