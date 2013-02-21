@@ -1,21 +1,23 @@
 module HW::Packages
+  extend self
+
   @@packages = {}
 
-  def self.add name
+  def add name
     HW::Sources.all.keys.each do |directory|
       full_path        = File.join(SOURCES_PATH, directory, "#{name}.rb")
       @@packages[name] = full_path if File.exists?(full_path)
     end
 
-    if self.reserved?(name)
+    if reserved?(name)
       puts "'#{name}' is a reserved word and cannot be defined as a package"
       exit(1)
     end
 
-    self.register(name, @@packages[name])
+    register(name, @@packages[name])
   end
 
-  def self.register name, file
+  def register name, file
     require file
     klass = HW::Packages::const_get(name.to_pkg)
     Thor.register(klass, name, "#{name} <command>", "")
@@ -24,7 +26,7 @@ module HW::Packages
     exit(1)
   end
 
-  def self.list
+  def list
     HW::Sources.all.keys.each do |directory|
       full_path = File.join(SOURCES_PATH, directory, "*.rb")
 
@@ -38,7 +40,7 @@ module HW::Packages
     @@packages.keys.sort
   end
 
-  def self.reserved? name
+  def reserved? name
     RESERVED_WORDS.include?(name.downcase)
   end
 end
