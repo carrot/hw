@@ -42,20 +42,48 @@ $ bundle
 
 <h4>Standalone</h4>
 
-<pre><code>$ gem install hw
-</code></pre>
+<pre>
+  <code>
+$ gem install hw
+  </code>
+</pre>
 
 <h3>Usage</h3>
 
 <h4>Retrieving community packages</h4>
 
-<h4>Adding your own source</h4>
+<p>The first thing that you'll want to do when installing Hemingway is to update all packages. When run for the first time, it will retrieve all available community packages.</p>
 
-<h5>Git</h5>
+<pre>
+  <code>
+$ hw update
+  </code>
+</pre>
 
-<h5>Local</h5>
+<h4>Adding a custom package source</h4>
+
+<p>To add a custom package source you must provide a name and either the URL of the git repository or the local folder path.</p>
+
+<pre>
+  <code>
+$ hw add_source <name> <source>
+$ hw add_source private git@github.com:carrot/hw-packages-private.git
+$ hw add_source personal ~/hw-personal-packages
+  </code>
+</pre>
+
+<p>With this approach, you have the ability to override existing packages. Note: When overriding packages, the most recently added sources hold greater priority.</p>
+<p>After adding a source, you must update all package sources.</p>
 
 <h4>Updating sources</h4>
+
+<p>To update all sources simply run:</p>
+
+<pre>
+  <code>
+$ hw update
+  </code>
+</pre>
 
 <h4>Creating a package</h4>
 
