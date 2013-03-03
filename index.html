@@ -34,58 +34,106 @@
 
 <p>Hemingway is a tool to easily manage, run, and collaborate on miscellaneous tasks.</p>
 
+
 <h3>Installation</h3>
 
-<h4>Gemfile</h4>
-
-<pre><code>$ gem 'hw'
-$ bundle
+<pre><code>$ gem install hw
+$ hw update
 </code></pre>
 
-<h4>Standalone</h4>
-
-<pre><code>$ gem install hw</code></pre>
 
 <h3>Usage</h3>
 
-<h4>Retrieving community packages</h4>
-
-<p>The first thing that you'll want to do when installing Hemingway is to update all packages. When run for the first time, it will retrieve all available community packages.</p>
+<h4>Updating sources</h4>
 
 <pre><code>$ hw update</code></pre>
+
+<h4>Viewing all available packages</h4>
+<pre><code>$ hw list</code></pre>
+
+<h4>Viewing all available tasks in a given package</h4>
+<pre><code>$ hw [package name]
+$ hw airbrake
+</code></pre>
+
+<h4>Running a task within a package</h4>
+<pre><code>$ hw airbrake [api-key]
+$ hw airbrake 1234567890
+</code></pre>
 
 <h4>Adding a custom package source</h4>
 
 <p>To add a custom package source you must provide a name and either the URL of the git repository or the local folder path.</p>
 
-<pre><code>$ hw add_source <name> <source>
+<pre><code>$ hw add_source [name] [source]
 $ hw add_source private git@github.com:carrot/hw-packages-private.git
 $ hw add_source personal ~/hw-personal-packages
 </code></pre>
 
-<p>With this approach, you have the ability to override existing packages. Note: When overriding packages, the most recently added sources hold greater priority.</p>
+<p>With this approach, you'll have the ability to override existing packages. Note: When overriding packages, the most recently added sources hold greater priority.</p>
 <p>After adding a source, you must update all package sources.</p>
 
-<h4>Updating sources</h4>
 
-<p>To update all sources simply run:</p>
+<h3>Creating a Package</h3>
 
-<pre><code>$ hw update</code></pre>
+<p>Hemingway is built on top of Thor and thus you have access to all of Thor's actions. Additionally, you have access to additional actions added by Hemingway.</p>
 
-<h4>Creating a package</h4>
+<p><strong>Step 1:</strong> Create a file in your source directory/repository with the same name as your class.</p>
+
+<pre><code>$ touch airbrake.rb</code></pre>
+
+<p><strong>Step 2:</strong> Encapsulate your class within <code>module HW::Packages</code>.</p>
+
+<pre><code>module HW::Packages
+  class Airbrake < HW::Thor
+    desc "install <api_key>", "Installs Airbrake into the current project"
+    def install api_key = false
+      unless api_key
+        error "You must provide an API key"
+        exit(1)
+      end
+
+      header "Adding the Airbrake gem to the Gemfile"
+      gem "airbrake"
+
+      bundle
+
+      header "Generating Airbrake"
+      generate "airbrake --api-key #{api_key}"
+
+      success "Airbrake has been successfully added to your project."
+    end
+  end
+end
+</code></pre>
+
+<p><strong>Step 3:</strong> Run your new package.</p>
+<pre><code>$ hw airbrake install abc123xyz789</code></pre>
+
+<p>To view all tasks available in a package, simply run the following:</p>
+<pre><code>$ hw airbrake</code></pre>
+
+<h3>Future Plans</h3>
+
+<ul>
+  <li>RSpec tests</li>
+  <li>Package-level external dependency management.</li>
+  <li>Package-level configuration settings</li>
+  <li>Better documentation</li>
+</ul>
 
 <h3>Authors and Contributors</h3>
 
-<p>The Hemingway project is actively maintained by Tom Milewski (<a href="https://github.com/tmilewski" class="user-mention">@tmilewski</a>).</p>
+<p>The Hemingway project was created and is actively maintained by Tom Milewski (<a href="https://github.com/tmilewski" class="user-mention">@tmilewski</a>).</p>
 
 <h3>Contributing</h3>
 
 <ol>
-<li>Fork it</li>
-<li>Create your feature branch (<code>git checkout -b new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin new-feature</code>)</li>
-<li>Create new Pull Request</li>
+  <li>Fork it</li>
+  <li>Create your feature branch (<code>git checkout -b new-feature</code>)</li>
+  <li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+  <li>Push to the branch (<code>git push origin new-feature</code>)</li>
+  <li>Create new Pull Request</li>
 </ol>
       </section>
       <footer>
@@ -93,7 +141,7 @@ $ hw add_source personal ~/hw-personal-packages
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		          <script type="text/javascript">
+          <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
