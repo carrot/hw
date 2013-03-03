@@ -5,7 +5,7 @@ module HW::Packages
 
   def add name
     HW::Sources.all.keys.each do |directory|
-      full_path        = File.join(SOURCES_PATH, directory, "#{name}.rb")
+      full_path        = File.join(HW::SOURCES_PATH, directory, "#{name}.rb")
       @@packages[name] = full_path if File.exists?(full_path)
     end
 
@@ -28,7 +28,7 @@ module HW::Packages
 
   def list
     HW::Sources.all.keys.each do |directory|
-      full_path = File.join(SOURCES_PATH, directory, "*.rb")
+      full_path = File.join(HW::SOURCES_PATH, directory, "*.rb")
 
       Dir[full_path].each do |file|
         key             = File.basename(file, '.rb')
@@ -41,6 +41,6 @@ module HW::Packages
   end
 
   def reserved? name
-    RESERVED_WORDS.include?(name.downcase)
+    HW::RESERVED_WORDS.include?(name.downcase)
   end
 end
