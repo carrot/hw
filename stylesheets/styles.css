@@ -226,6 +226,10 @@ p.header {
 	font-size: 16px;
 }
 
+p.header.maintained-by {
+	font-size: 14px;
+}
+
 h1.header {
 	font-family: Arvo, sans-serif;
 	font-size: 30px;
