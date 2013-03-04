@@ -1,6 +1,8 @@
 $( document ).ready( function() {
-  $('section h3').waypoint(function(direction) {
-    $('header ul li.waypoint').removeClass('active');
-    return $("a[href='#" + ($(this).attr('id')) + "']").parent().addClass('active');
+  waypoints = $('header ul li.waypoint');
+
+  $('section h3').waypoint(function(e) {
+    waypoints.removeClass('active');
+    return $("a[href='#" + e.target.id + "']").parent().addClass('active');
   });
 });
