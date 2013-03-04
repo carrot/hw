@@ -363,16 +363,15 @@ footer {
 }
 
 @media print, screen and (max-width: 960px) {
-
   div.wrapper {
-    width:auto;
-    margin:0;
+    width: auto;
+    margin: 0;
   }
 
   header, section, footer {
-    float:none;
-    position:static;
-    width:auto;
+    float: none;
+    position: static;
+    width: auto;
   }
 
   footer {
@@ -383,6 +382,7 @@ footer {
 
   header {
     padding-right:320px;
+    padding-bottom: 170px;
   }
 
   section {
@@ -403,17 +403,17 @@ footer {
 
 @media print, screen and (max-width: 720px) {
   body {
-    word-wrap:break-word;
+    word-wrap: break-word;
   }
 
   header {
-    padding:10px 20px 0;
+    padding: 10px 20px 0;
     margin-right: 0;
   }
 
   section {
-    padding:10px 0 10px 20px;
-    margin:0 0 30px;
+    padding: 10px 0 10px 20px;
+    margin: 0 0 30px;
   }
 
   footer {
@@ -421,7 +421,7 @@ footer {
   }
 
   header ul, header p.view {
-    position:static;
+    position: static;
   }
 }
 
@@ -442,8 +442,8 @@ footer {
 
 @media print {
   body {
-    padding:0.4in;
-    font-size:12pt;
-    color:#444;
+    padding: 0.4in;
+    font-size: 12pt;
+    color: #444;
   }
 }
