@@ -20,7 +20,7 @@ module HW
       Thor::Shell::Basic.new.print_in_columns(HW::Packages.list)
     end
 
-    desc "add_source <name> <source>", "Add a source to ~/.cbrc"
+    desc "add_source <name> <source>", "Add a source to ~/.hw/config"
     def add_source name, source
       header "Appending #{name} to #{CONFIG_PATH}"
       append_file CONFIG_PATH, "#{name}=#{source}\n"
