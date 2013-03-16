@@ -31,6 +31,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = HW::VERSION
 
-  gem.signing_key = '~/.gem/trust/hw-private_key.pem'
+  gem.signing_key = '/Users/tmilewski/.gemcert/hw-private_key.pem'
   gem.cert_chain  = ['hw-public_cert.pem']
 end
