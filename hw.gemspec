@@ -2,11 +2,13 @@
 require File.expand_path('../lib/hw/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Tom Milewski"]
-  gem.email         = ["tmilewski@gmail.com"]
-  gem.description   = %q{Package manager for random tasks}
-  gem.summary       = %q{}
-  gem.homepage      = "http://carrotcreative.com"
+  gem.description = %q{Package manager for random tasks}
+  gem.summary     = %q{}
+  gem.license     = 'MIT'
+
+  gem.author   = 'Tom Milewski'
+  gem.email    = 'tmilewski@gmail.com'
+  gem.homepage = 'http://carrot.is/tom'
 
   gem.add_dependency 'bundler'
   gem.add_dependency 'thor', ">= 0.14.6", "< 2.0"
