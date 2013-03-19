@@ -48,6 +48,7 @@ module HW
     end
 
     desc "update", "Update installed packages"
+    method_option :pull, :aliases => "-p", :type => :boolean, :default => "true",  :desc => "Pull from remote sources"
     def update
       header "Updating hw"
 
@@ -63,26 +64,28 @@ module HW
       end
 
       # Iterate through sources and take appropriate actions. TODO: Refactor.
-      HW::Sources.all.each do |name, url|
-        begin
-          path  = "#{SOURCES_PATH}/#{name}"
-          local = HW::Sources.local_source?(url)
+      if options["pull"]
+        HW::Sources.all.each do |name, url|
+          begin
+            path  = "#{SOURCES_PATH}/#{name}"
+            local = HW::Sources.local_source?(url)
 
-          unless local
-            if File.exists?(path)
-              Git.open(path).pull
-            else
-              Git.clone(url, name, :path => SOURCES_PATH) unless local
+            unless local
+              if File.exists?(path)
+                Git.open(path).pull
+              else
+                Git.clone(url, name, :path => SOURCES_PATH) unless local
+              end
             end
-          end
 
-          if local and !File.exists?(url)
-            error "Local directory '#{url}' not found. Please check your sources at #{CONFIG_PATH}"
-          else
-            success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
+            if local and !File.exists?(url)
+              error "Local directory '#{url}' not found. Please check your sources at #{CONFIG_PATH}"
+            else
+              success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
+            end
+          rescue Git::GitExecuteError => e
+            warn "Nothing was pulled from #{url}"
           end
-        rescue Git::GitExecuteError => e
-          warn "Nothing was pulled from #{url}"
         end
       end
     end

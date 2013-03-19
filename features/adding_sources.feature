@@ -3,7 +3,7 @@ Feature: Adding Sources
 
   Background:
     Given I haven't installed Hemingway before
-    When I successfully run `hw update`
+    When I successfully run `hw update --pull=false`
 
   Scenario: Add a custom git source
     When I successfully run `hw add_source private git@github.com:carrot/hw-packages-private.git`

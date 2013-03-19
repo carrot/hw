@@ -1,5 +1,5 @@
 Before do
-  @aruba_timeout_seconds = 12
+  @aruba_timeout_seconds = 20
 
   @real_home  = ENV['HOME']
   fake_home   = File.join('/tmp', 'gems', 'hw', 'fakehome')
