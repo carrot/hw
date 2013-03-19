@@ -3,7 +3,7 @@ require 'thor'
 require 'thor/group'
 require 'httparty'
 require 'active_support/all'
-require 'rails/generators/actions'
+require 'rails/generators/base'
 
 module HW
   DEFAULT_SOURCE  = "git@github.com:carrot/hw-packages.git" # CLI
