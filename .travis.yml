@@ -13,7 +13,7 @@ notifications:
   email: false
   campfire:
     on_success: change
-    on_failure: always
+    on_failure: change
     rooms:
       - secure: "AICTLi0MONccrRhoL8OjRugKDGvf5nWk1exKxKRPkYEN9LNLnk+2rUXxJpgr\n40k7D3zycQJyO9f5NXBeM8H9/2snBR6mKQLobjK1oVMxePzvA0uSKg2DbO80\njAfHsiSPPEO4/bLJBtw6h/LgTLt0wLdJVizLd213fm60m4Iw9wo="
     template:
