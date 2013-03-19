@@ -18,12 +18,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'pg'
   gem.add_dependency 'git'
 
-  gem.add_development_dependency 'rspec-rails'
-  gem.add_development_dependency "ruby-prof"
-  gem.add_development_dependency "debugger"
-  gem.add_development_dependency "ronn"
-  gem.add_development_dependency "rspec", "~> 2.11"
-  gem.add_development_dependency "pry"
+  gem.add_development_dependency "cucumber"
+  gem.add_development_dependency "aruba"
   gem.add_development_dependency "sqlite3"
 
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
