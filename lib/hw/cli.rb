@@ -61,7 +61,7 @@ module HW
         header "Adding default source to #{CONFIG_PATH}"
 
         create_file CONFIG_PATH
-        invoke :add_source, ["default", DEFAULT_SOURCE]
+        self.class.new.invoke :add_source, ["default", DEFAULT_SOURCE] # self.class.new added else RSpec screws up.
       end
 
       # Iterate through sources and take appropriate actions. TODO: Refactor.
@@ -88,6 +88,9 @@ module HW
             warn "Nothing was pulled from #{url}"
           end
         end
+      else
+        warn "Sources not updated"
+        info "Remove --pull=false to update your sources"
       end
     end
   end
