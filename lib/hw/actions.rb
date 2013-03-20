@@ -27,4 +27,3 @@ module HW::Actions
     create_file("app/workers/#{filename}", data, :verbose => false, &block)
   end
 end
-
