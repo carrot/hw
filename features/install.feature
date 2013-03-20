@@ -3,7 +3,7 @@ Feature: Installation
   The correct directory structure must be in place
 
   Background:
-    Given I haven't installed Hemingway before
+    Given I haven't installed Hemingway
     When I successfully run `hw update`
 
   Scenario: Create the directory structure

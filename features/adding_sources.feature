@@ -2,7 +2,7 @@ Feature: Adding Sources
   Enable the user to append custom sources.
 
   Background:
-    Given I haven't installed Hemingway before
+    Given I haven't installed Hemingway
     When I successfully run `hw update --pull=false`
 
   Scenario: Add a custom git source

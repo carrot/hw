@@ -5,8 +5,23 @@ Given /^pending/ do
   pending
 end
 
-Given /^I haven't installed Hemingway before$/ do
+Given /^I haven't installed Hemingway$/ do
   rm_rf File.expand_path("~/.hw")
+end
+
+Given /^I have installed Hemingway$/ do
+end
+
+Given(/^the remote version is '(.+)'$/) do |version|
+  #HW.should_receive(:VERSION).and_return(version)
+  #puts VERSION
+
+end
+
+Then /^the gem should be (out of|up to) date with the remote version of (.+)$/ do |result, version|
+  gem_results = [[["hw", Gem::Version.new(version), "ruby"], "http://rubygems.org/"]]
+  Gem::SpecFetcher::fetcher.should_receive(:find_matching).and_return(gem_results)
+  step %{the stdout should contain "Your version is #{result} date"}
 end
 
 # Useful for debugging timing problems

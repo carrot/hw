@@ -29,6 +29,7 @@ module HW
     desc "version", "display gem version information"
     def version
       dependency = Gem::Dependency.new('hw', Gem::Requirement::default)
+      puts Gem::SpecFetcher::fetcher.find_matching(dependency, true, false, false).inspect
       versions = Gem::SpecFetcher::fetcher.find_matching(dependency, true, false, false).collect do |entry|
         if tuple = entry.first
           tuple[1]
