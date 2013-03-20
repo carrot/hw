@@ -10,18 +10,10 @@ Gem::Specification.new do |gem|
   gem.email    = 'tmilewski@gmail.com'
   gem.homepage = 'http://carrot.is/tom'
 
-  gem.add_dependency 'bundler'
   gem.add_dependency 'thor', ">= 0.14.6", "< 2.0"
   gem.add_dependency 'activesupport', "~> 3.0"
   gem.add_dependency 'railties', "~> 3.0"
-  gem.add_dependency 'rake'
-  gem.add_dependency 'httparty'
-  gem.add_dependency 'pg'
   gem.add_dependency 'git'
-
-  gem.add_development_dependency "cucumber"
-  gem.add_development_dependency "aruba"
-  gem.add_development_dependency "sqlite3"
 
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
