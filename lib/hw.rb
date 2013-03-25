@@ -1,6 +1,7 @@
 require 'git'
 require 'thor'
 require 'thor/group'
+#require 'active_support/all'
 require 'rails/generators/base'
 
 module HW
