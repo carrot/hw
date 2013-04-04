@@ -4,8 +4,13 @@ module HW::Packages
   @@packages = {}
 
   def add name
-    HW::Sources.all.keys.each do |directory|
-      full_path        = File.join(HW::SOURCES_PATH, directory, "#{name}.rb")
+    HW::Sources.all.each do |key, path|
+      full_path = if HW::Sources.local_source?(path)
+        File.join(path, "#{name}.rb")
+      else
+        File.join(HW::SOURCES_PATH, key, "#{name}.rb")
+      end
+
       @@packages[name] = full_path if File.exists?(full_path)
     end
 

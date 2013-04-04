@@ -18,12 +18,33 @@ module HW::Actions
     run "bundle install --quiet"
   end
 
-  def migrate env = :development
+  def migrate(options={})
     header "Migrating the database"
-    rake "db:migrate", :env => env
+    env = options[:env] || 'development'
+    rake("db:migrate", env: env, silence: true)
   end
 
   def worker filename, data=nil, &block
-    create_file("app/workers/#{filename}", data, :verbose => false, &block)
+    create_file("app/workers/#{filename}", data, verbose: false, &block)
+  end
+
+  def rake(command, options={})
+    env     = options[:env] || 'development'
+    capture = options[:silence] || false
+    sudo    = options[:sudo] ? 'sudo ' : ''
+
+    #run  rake db:create from "./testing"
+    #success
+    run("#{sudo}rake #{command} RAILS_ENV=#{env}", verbose: false, capture: capture)
+  end
+
+  def git(commands={})
+    if commands.is_a?(Symbol)
+      run "git #{commands}"
+    else
+      commands.each do |cmd, options|
+        run "git #{cmd} #{options}"
+      end
+    end
   end
 end
