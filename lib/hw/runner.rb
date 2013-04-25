@@ -1,6 +1,6 @@
-require 'hw'
+require 'hw/base'
 
-class HW::Runner < HW
+class HW::Runner < HW #
   include Base
 
   def self.start(given_args = ARGV, config = {})
@@ -20,13 +20,14 @@ class HW::Runner < HW
   desc "list", "list available packages"
   def list
     header "Listing available packages"
-    print_in_columns(Packages.list)
+    #print_in_columns(Packages.list)
+    Packages.formatted_list
   end
 
   desc "add_source <name> <source>", "Add a source to ~/.hw/config"
   def add_source name, source
     header "Appending #{name} to #{CONFIG_PATH}"
-    append_file CONFIG_PATH, "#{name}=#{source}\n"
+    Sources.add(name, source)
   end
 
   desc "update", "Update installed packages"

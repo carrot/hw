@@ -8,9 +8,6 @@ class HW < Thor
   autoload :Sources,  'hw/sources'
   autoload :Packages, 'hw/packages'
   
-  #autoload :Rails,    'rails'
-  #require 'rails/generators/base'
-  
   DEFAULT_SOURCE  = "git@github.com:carrot/hw-packages.git"
   DIRECTORY       = File.expand_path("~/.hw/")
   CONFIG_PATH     = "#{DIRECTORY}/config"
@@ -18,6 +15,7 @@ class HW < Thor
   RESERVED_WORDS  = %w(help)
 
   module Base
+
     class << self
       def included(base) # :nodoc:
         base.send :extend,  ClassMethods
