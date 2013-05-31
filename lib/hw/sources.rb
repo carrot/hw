@@ -43,10 +43,11 @@ class HW
           begin
             path  = "#{SOURCES_PATH}/#{name}"
             local = self.local_source?(url)
-
+            
             unless local
               if File.exists?(path)
-                Git.open(path).pull
+                git = Git.open(path, log: nil)
+                git.lib.send :command, 'pull' # See: https://github.com/schacon/ruby-git/issues/32
               else
                 Git.clone(url, name, :path => SOURCES_PATH) unless local
               end
