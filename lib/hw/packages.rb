@@ -37,6 +37,8 @@ class HW
       end
 
       def list
+        header "Listing available packages"
+
         Sources.all.keys.each do |directory|
           full_path = File.join(SOURCES_PATH, directory, "*.rb")
 
