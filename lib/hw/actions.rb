@@ -13,7 +13,7 @@ class HW
 
     def replace_file(destination, data = nil, config = {}, &block)
       remove_file(destination)
-      create_file(destination, data, config, block)
+      create_file(destination, (data || block.call()), config)
     end
 
     def bundle
