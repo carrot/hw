@@ -44,7 +44,7 @@
 <h3 id="installation">Installation</h3>
 
 <pre><code>$ gem install hw
-$ hw update
+$ hw install
 </code></pre>
 
 
@@ -90,25 +90,26 @@ $ hw add_source personal ~/hw-personal-packages
 
 <p><strong>Step 2:</strong> Encapsulate your class within <code>module HW::Packages</code>.</p>
 
-<pre><code>module HW::Packages
-  class Airbrake < HW::Thor
-    desc "install <api_key>", "Installs Airbrake into the current project"
-    def install api_key = false
-      unless api_key
-        error "You must provide an API key"
-        exit(1)
-      end
+<pre><code>require 'hw/ext/rails' # Include Rails Generators
+class Airbrake < Thor
+  include HW::Base
 
-      header "Adding the Airbrake gem to the Gemfile"
-      gem "airbrake"
-
-      bundle
-
-      header "Generating Airbrake"
-      generate "airbrake --api-key #{api_key}"
-
-      success "Airbrake has been successfully added to your project."
+  desc "install <api_key>", "Installs Airbrake into the current project"
+  def install api_key = false
+    unless api_key
+      error "You must provide an API key"
+      exit(1)
     end
+
+    header "Adding the Airbrake gem to the Gemfile"
+    gem "airbrake"
+
+    bundle
+
+    header "Generating Airbrake"
+    generate "airbrake --api-key #{api_key}"
+
+    success "Airbrake has been successfully added to your project."
   end
 end
 </code></pre>
@@ -123,8 +124,8 @@ end
 
 <ul>
   <li>RSpec tests</li>
-  <li>Package-level external dependency management.</li>
   <li>Package-level configuration settings</li>
+  <li>`hw create [pkg]` generator</li>
   <li>Better documentation</li>
 </ul>
 
