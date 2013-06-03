@@ -6,6 +6,8 @@
 
 Package manager for miscellaneous tasks.
 
-## Documentation
+Hemingway is a tool to easily create, manage, run, and collaborate on miscellaneous tasks.
+
+### Documentation
 
 Please visit [hemingway.in](http://hemingway.in/) for more information.
