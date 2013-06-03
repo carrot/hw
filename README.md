@@ -4,8 +4,6 @@
 
 # HW (Hemingway)
 
-Package manager for miscellaneous tasks.
-
 Hemingway is a tool to easily create, manage, run, and collaborate on miscellaneous tasks.
 
 ### Documentation
