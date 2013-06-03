@@ -22,6 +22,11 @@ class HW < Thor
         base.send :include, Thor::Actions
         base.send :include, Thor::Shell
         base.send :include, Actions
+
+        # Include Rails generators if defined
+        if defined?(Rails) and defined?(Rails::Generators)
+          base.send :include, Rails::Generators::Actions
+        end
       end
     end
 
