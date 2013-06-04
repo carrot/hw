@@ -27,6 +27,14 @@ class HW
       rake("db:migrate", env: env, silence: true)
     end
 
+    def migration filename, data=nil, &block
+      last_migration  = ActiveRecord::Migrator.migrations('db/migrate').last
+      number          = last_migration ? last_migration.version + 1 : 0
+      timestamp       = [Time.now.utc.strftime("%Y%m%d%H%M%S"), "%.14d" % number].max.to_i
+
+      create_file("db/migrate/#{timestamp}_#{filename.underscore}.rb", data, verbose: false, &block)
+    end
+
     def worker filename, data=nil, &block
       create_file("app/workers/#{filename}", data, verbose: false, &block)
     end
