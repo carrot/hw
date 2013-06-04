@@ -46,10 +46,9 @@ class HW
             
             unless local
               if File.exists?(path)
-                git = Git.open(path, log: nil)
-                git.lib.send :command, 'pull' # See: https://github.com/schacon/ruby-git/issues/32
+                Git.open(path, log: nil).lib.send(:command, 'pull') # See: https://github.com/schacon/ruby-git/issues/32
               else
-                Git.clone(url, name, :path => SOURCES_PATH) unless local
+                Git.clone(url, name, :path => SOURCES_PATH)
               end
             end
 
@@ -58,18 +57,10 @@ class HW
             else
               success "Successfully pulled updates from #{url} to #{SOURCES_PATH}#{name}"
             end
-          rescue Git::GitExecuteError => e
+          rescue Git::GitExecuteError
             warn "Nothing was pulled from #{url}"
           end
         end
-      end
-
-      def git_clone
-        # TODO: Clone git repo
-      end
-
-      def git_pull
-        # TODO: Pull changes from git repo
       end
 
       def local_source? path
