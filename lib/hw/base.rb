@@ -16,7 +16,6 @@ module HW
   RESERVED_WORDS  = %w(help)
 
   module Base
-
     class << self
       def included(base) # :nodoc:
         base.send :extend,  ClassMethods
