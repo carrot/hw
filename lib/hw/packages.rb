@@ -1,4 +1,4 @@
-class HW
+module HW
   class Packages
     extend Thor::Actions
     extend Thor::Shell

@@ -3,7 +3,8 @@ require 'thor'
 require 'thor/group'
 require 'hw/core_ext/string'
 
-class HW < Thor
+module HW 
+  autoload :Runner,   'hw/runner'
   autoload :Actions,  'hw/actions'
   autoload :Sources,  'hw/sources'
   autoload :Packages, 'hw/packages'

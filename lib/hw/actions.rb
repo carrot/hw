@@ -1,4 +1,4 @@
-class HW
+module HW
   module Actions
     extend Thor::Actions
 

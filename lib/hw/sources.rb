@@ -1,4 +1,4 @@
-class HW
+module HW
   class Sources < Thor
     extend Thor::Actions
     extend Thor::Shell
