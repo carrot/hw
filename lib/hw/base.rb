@@ -1,4 +1,3 @@
-require 'git'
 require 'thor'
 require 'thor/group'
 require 'hw/core_ext/string'

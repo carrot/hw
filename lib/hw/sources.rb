@@ -1,3 +1,5 @@
+require 'git'
+
 module HW
   class Sources < Thor
     extend Thor::Actions

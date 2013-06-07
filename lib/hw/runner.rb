@@ -1,5 +1,3 @@
-#require 'hw/base'
-
 module HW
   class Runner < Thor
     include Base
