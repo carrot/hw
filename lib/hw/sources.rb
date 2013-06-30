@@ -29,14 +29,15 @@ module HW
       end
 
       def ensure_defaults
+        self.destination_root = "~/.hw/"
+
         empty_directory DIRECTORY     unless File.exists? DIRECTORY
         empty_directory SOURCES_PATH  unless File.exists? SOURCES_PATH
 
         unless File.exists? CONFIG_PATH
           header "Adding default source to #{CONFIG_PATH}"
-
           create_file CONFIG_PATH
-          self.class.new.invoke :add_source, ["default", DEFAULT_SOURCE] # self.class.new added else RSpec screws up.    
+          add "default", DEFAULT_SOURCE
         end
       end
 

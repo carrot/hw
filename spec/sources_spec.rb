@@ -7,7 +7,7 @@ describe HW::Sources do
     end
 
     it "should return all sources" do
-      results = capture(:stdout) { HW::CLI.start(["update", "--pull", "false"]) }
+      capture(:stdout) { HW::Runner.start(["update", "--pull", "false"]) }
       expected_result = {"default"=>"git@github.com:carrot/hw-packages.git"}
       expect(HW::Sources.all).to eq expected_result
     end
