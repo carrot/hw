@@ -9,3 +9,7 @@ Hemingway is a tool to easily create, manage, run, and collaborate on miscellane
 ### Documentation
 
 Please visit [hemingway.in](http://hemingway.in/) for more information.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/carrot/hw/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
