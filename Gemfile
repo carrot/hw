@@ -6,3 +6,7 @@ group :test do
   gem "aruba"
   gem "rspec"
 end
+
+platforms :rbx do
+  gem 'rubysl', '~> 2.0'
+end
