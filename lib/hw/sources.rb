@@ -49,7 +49,7 @@ module HW
             
             unless local
               if File.exists?(path)
-                Git.open(path, log: nil).lib.send(:command, 'pull') # See: https://github.com/schacon/ruby-git/issues/32
+                Git.open(path, :log => nil).lib.send(:command, 'pull') # See: https://github.com/schacon/ruby-git/issues/32
               else
                 Git.clone(url, name, :path => SOURCES_PATH)
               end
