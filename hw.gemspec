@@ -11,8 +11,6 @@ Gem::Specification.new do |gem|
   gem.homepage = 'http://carrot.is/tom'
 
   gem.add_dependency 'thor', ">= 0.14.6", "< 2.0"
-  gem.add_dependency 'rails', "~> 4.0"
-  gem.add_dependency 'railties', "~> 4.0"
   gem.add_dependency 'git'
 
   gem.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
