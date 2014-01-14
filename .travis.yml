@@ -13,6 +13,11 @@ rvm:
   - jruby-head
   - rbx
   - ruby-head
+matrix:
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: ruby-head
+  fast_finish: true
 branches:
   only:
     - master
